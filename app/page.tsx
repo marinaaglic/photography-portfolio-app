@@ -1,3 +1,9 @@
+import Header from "../components/header/Header";
+
 export default function Home() {
-  return <div>Photography Portfolio</div>;
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 }

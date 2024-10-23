@@ -10,10 +10,10 @@ export default function RootLayout({
 }>) {
   const { theme } = useTheme();
   return (
-    <html lang="en">
-      <ThemeProvider>
-        <body className={theme === "dark" ? "dark" : ""}>{children}</body>
-      </ThemeProvider>
-    </html>
+    <ThemeProvider>
+      <html lang="en">
+        <body className={theme}>{children}</body>
+      </html>
+    </ThemeProvider>
   );
 }

@@ -18,24 +18,20 @@ const ThemeSwitcher = () => {
     return null;
   }
 
-  const handleTheme = () => {
-    if (theme === "light") {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
+  const isDark = theme === "dark";
+
+  const handleThemeChange = () => {
+    setTheme(isDark ? "light" : "dark");
   };
 
   return (
     <div>
       <Switch
-        defaultSelected
+        checked={isDark}
         size="lg"
         color="success"
-        onClick={handleTheme}
-        startContent={<IoSunny />}
-        endContent={<FaMoon />}
-      ></Switch>
+        onChange={handleThemeChange}
+      />
     </div>
   );
 };

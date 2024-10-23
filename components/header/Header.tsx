@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./header.module.css";
-import ThemeSwitcher from "../../app/themeProvider/ThemeSwitcher";
+import ThemeSwitcher from "../toggle/ThemeSwitcher";
 
 export default function Header() {
   return (

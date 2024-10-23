@@ -1,5 +1,5 @@
 import "./globals.css";
-import ThemeProvider from "./themeProvider/ThemeProvider";
+import ThemeProvider from "./providers/ThemeProvider";
 
 export default function RootLayout({
   children,

@@ -1,21 +1,30 @@
 "use client";
 
-import { ThemeProvider as NextThemeProvider } from "next-themes";
-import { useEffect, useState, ReactNode } from "react";
+import { createContext, useState, useContext, ReactNode } from "react";
 
-interface ThemeProviderProps {
-  children: ReactNode;
-}
+export const ThemeContext = createContext({
+  theme: "light",
+  toggleTheme: () => {},
+});
 
-export default function ThemeProvider({ children }: ThemeProviderProps) {
-  const [mounted, setMounted] = useState<boolean>(false);
+export const ThemeProvider = ({ children }: { children: ReactNode }) => {
+  const [theme, setTheme] = useState<string>("light");
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  };
 
-  if (!mounted) {
-    return null;
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+export const useTheme = () => {
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error("useTheme must be used inside ThemeProvider");
   }
-  return <NextThemeProvider attribute="class">{children}</NextThemeProvider>;
-}
+  return context;
+};

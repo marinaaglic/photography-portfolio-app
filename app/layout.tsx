@@ -1,17 +1,19 @@
+"use client";
+
 import "./globals.css";
-import ThemeProvider from "./providers/ThemeProvider";
+import { ThemeProvider, useTheme } from "../app/providers/ThemeProvider";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { theme } = useTheme();
   return (
     <html lang="en">
-      <body>
-        {" "}
-        <ThemeProvider>{children}</ThemeProvider>
-      </body>
+      <ThemeProvider>
+        <body className={theme === "dark" ? "dark" : ""}>{children}</body>
+      </ThemeProvider>
     </html>
   );
 }

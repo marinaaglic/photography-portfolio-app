@@ -4,12 +4,23 @@
   text-align: center;
   font-family: cursive;
   font-size: 20px;
+  border-radius: 10px;
+}
+
+.headerLight {
   background: linear-gradient(
     90deg,
     rgba(253, 79, 29, 1) 0%,
     rgba(252, 212, 69, 1) 84%
   );
-  border-radius: 10px;
+}
+
+.headerDark {
+  background: linear-gradient(
+    90deg,
+    rgba(153, 48, 18, 1) 0%,
+    rgba(127, 106, 35, 1) 84%
+  );
 }
 
 .ul {

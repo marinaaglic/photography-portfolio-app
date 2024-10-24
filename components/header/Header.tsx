@@ -7,6 +7,7 @@ import ThemeToggle from "../toggle/ThemeToggle";
 
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
+
   const headerStyle = theme === "dark" ? styles.headerDark : styles.headerLight;
   return (
     <header className={`${styles.header} ${headerStyle}`}>
@@ -14,7 +15,7 @@ export default function Header() {
         <ul className={styles.ul}>
           <li className={styles.li}>Photography Portfolio | Sunset Pictures</li>
           <li className={styles.li}>
-            <ThemeToggle onToggle={toggleTheme} />
+            <ThemeToggle onToggle={toggleTheme} theme={theme} />
           </li>
         </ul>
       </nav>

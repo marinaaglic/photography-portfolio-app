@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { getAllImageUrls } from "../../utils/firebaseService";
 import Image from "next/image";
+import styles from "./gridImage.module.css";
 
 export default function GridImage() {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
@@ -20,7 +21,7 @@ export default function GridImage() {
   }, []);
 
   return (
-    <div>
+    <div className={styles.grid}>
       {imageUrls.map((url, index) => (
         <div key={index}>
           <Image
@@ -29,6 +30,7 @@ export default function GridImage() {
             width={300}
             height={300}
             loading="lazy"
+            className={styles.image}
           />
         </div>
       ))}

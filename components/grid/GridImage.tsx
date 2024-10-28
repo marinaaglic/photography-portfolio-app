@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { getAllImageUrls } from "../../utils/firebaseService";
 import Image from "next/image";
 import styles from "./gridImage.module.css";
+import { motion } from "framer-motion";
 
 export default function GridImage() {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
@@ -23,7 +24,12 @@ export default function GridImage() {
   return (
     <div className={styles.grid}>
       {imageUrls.map((url, index) => (
-        <div key={index}>
+        <motion.div
+          key={index}
+          initial={{ opacity: 0.3 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
+        >
           <Image
             src={url}
             alt={`Image ${index + 1}`}
@@ -32,7 +38,7 @@ export default function GridImage() {
             loading="lazy"
             className={styles.image}
           />
-        </div>
+        </motion.div>
       ))}
     </div>
   );

@@ -22,7 +22,7 @@ export default function GridImage() {
   }, []);
 
   return (
-    <div className={styles.grid}>
+    <div className={styles.container}>
       {imageUrls.map((url, index) => (
         <motion.div
           key={index}

@@ -22,7 +22,7 @@ export default function GridImage() {
   }, []);
 
   const getRandomSpan = () => {
-    const spans = [1, 2];
+    const spans = [2, 3];
     return spans[Math.floor(Math.random() * spans.length)];
   };
 

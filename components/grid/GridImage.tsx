@@ -21,6 +21,11 @@ export default function GridImage() {
     fetchImages();
   }, []);
 
+  const getRandomSpan = () => {
+    const spans = [1, 2];
+    return spans[Math.floor(Math.random() * spans.length)];
+  };
+
   return (
     <div className={styles.container}>
       {imageUrls.map((url, index) => (
@@ -29,6 +34,10 @@ export default function GridImage() {
           initial={{ opacity: 0.3 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
+          style={{
+            gridColumn: `span ${getRandomSpan()}`,
+            gridRow: `span ${getRandomSpan()}`,
+          }}
         >
           <Image
             src={url}
@@ -37,6 +46,7 @@ export default function GridImage() {
             height={300}
             loading="lazy"
             className={styles.image}
+            layout="responsive"
           />
         </motion.div>
       ))}

@@ -33,7 +33,8 @@ export default function GridImage() {
           key={index}
           initial={{ opacity: 0.3 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
+          transition={{ duration: 0.3, ease: "linear" }}
+          viewport={{ once: false, amount: 0.5 }}
           style={{
             gridColumn: `span ${getRandomSpan()}`,
             gridRow: `span ${getRandomSpan()}`,

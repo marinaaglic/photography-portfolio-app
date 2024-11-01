@@ -31,8 +31,7 @@ export default function GridImage() {
 
   const handleNext = () => {
     const prevIndex =
-      selectedIndex === 0 ? imageUrls.length - 1 : selectedIndex + 1;
-
+      selectedIndex === imageUrls.length - 1 ? 0 : selectedIndex + 1;
     setSelectedIndex(prevIndex);
   };
 

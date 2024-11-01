@@ -25,7 +25,7 @@ export default function Modal({
       <div className={styles.modalContainer}>
         <div className={styles.modalBox}>
           <div className={styles.modalHeader}>
-            <IoClose onClick={onClose} />
+            <IoClose onClick={onClose} className={styles.closeButton} />
           </div>
           <div className={styles.imageContainer}>
             <GrFormPrevious

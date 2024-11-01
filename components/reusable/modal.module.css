@@ -20,10 +20,9 @@
 
 .modalHeader {
   display: flex;
-  flex-direction: row;
+  flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 0px;
   text-align: center;
 }
 
@@ -33,14 +32,15 @@
 }
 
 .closeButton {
-  background-color: rgba(75, 85, 99, 0.5);
-  padding: 4px 10px;
+  padding: 4px;
   border-radius: 9999px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   color: white;
   transition: all 0.3s ease;
   border: none;
+  cursor: pointer;
+  margin-bottom: 5px;
 }
 
 .closeButton:hover {

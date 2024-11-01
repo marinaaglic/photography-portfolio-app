@@ -70,7 +70,10 @@ export default function GridImage() {
             height={300}
             loading="lazy"
             className={styles.image}
-            onClick={() => setShowModal(true)}
+            onClick={() => {
+              setShowModal(true);
+              setSelectedIndex(index);
+            }}
           />
         </motion.div>
       ))}

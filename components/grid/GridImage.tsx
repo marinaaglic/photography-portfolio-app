@@ -11,23 +11,27 @@ export default function GridImage() {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [imageSpans, setImageSpans] = useState<
+    { column: number; row: number }[]
+  >([]);
 
   useEffect(() => {
     const fetchImages = async () => {
       try {
         const urls = await getAllImageUrls("");
         setImageUrls(urls);
+
+        const spans = urls.map(() => ({
+          column: Math.random() < 0.5 ? 2 : 3,
+          row: Math.random() < 0.5 ? 2 : 3,
+        }));
+        setImageSpans(spans);
       } catch (error) {
         console.log("An error occurred: ", error);
       }
     };
     fetchImages();
   }, []);
-
-  const getRandomSpan = () => {
-    const spans = [2, 3];
-    return spans[Math.floor(Math.random() * spans.length)];
-  };
 
   const handleNext = () => {
     const prevIndex =
@@ -55,8 +59,8 @@ export default function GridImage() {
           transition={{ duration: 0.3, ease: "linear" }}
           viewport={{ once: false, amount: 0.5 }}
           style={{
-            gridColumn: `span ${getRandomSpan()}`,
-            gridRow: `span ${getRandomSpan()}`,
+            gridColumn: `span ${imageSpans[index]?.column || 1}`,
+            gridRow: `span ${imageSpans[index]?.row || 1}`,
           }}
         >
           <Image

@@ -1,6 +1,9 @@
-import React, { ReactElement } from "react";
-import Image, { ImageProps } from "next/image";
+import React from "react";
+import Image from "next/image";
 import styles from "./modal.module.css";
+import { IoClose } from "react-icons/io5";
+import { GrFormNext } from "react-icons/gr";
+import { GrFormPrevious } from "react-icons/gr";
 
 interface ModalProps {
   imageUrl: string;
@@ -18,33 +21,29 @@ export default function Modal({
   selectedIndex,
 }: ModalProps) {
   return (
-    <div className={styles.modalOverlay}>
+    <div className={styles.modalOverlay} onClick={(e) => e.stopPropagation()}>
       <div className={styles.modalContainer}>
         <div className={styles.modalBox}>
           <div className={styles.modalHeader}>
-            <button onClick={onClose}></button>
+            <IoClose onClick={onClose} />
           </div>
           <div className={styles.imageContainer}>
-            <button
+            <GrFormPrevious
               className={`${styles.navButton} ${styles.left}`}
               onClick={onPrev}
-            >
-              &lt;
-            </button>
-            <button
+            />
+
+            <GrFormNext
               className={`${styles.navButton} ${styles.right}`}
               onClick={onNext}
-            >
-              &gt;
-            </button>
-            <div className={styles.imageIndex}>
-              <span>{`Image ${selectedIndex + 1}`}</span>
-            </div>
+            />
+
             <Image
               src={imageUrl}
-              alt="Selected image"
               width={600}
               height={600}
+              alt="Selected image"
+              className={styles.image}
             />
           </div>
         </div>

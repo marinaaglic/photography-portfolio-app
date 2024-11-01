@@ -71,15 +71,6 @@
   right: 0;
 }
 
-.imageIndex {
-  position: absolute;
-  bottom: 16px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  color: black;
-  opacity: 0.8;
-  font-size: 18px;
-  font-weight: bold;
+.image {
+  width: 100%;
 }

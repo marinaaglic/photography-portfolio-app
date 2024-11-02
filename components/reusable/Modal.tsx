@@ -40,11 +40,11 @@ export default function Modal({
 
             <Image
               src={imageUrl}
-              width={600}
-              height={600}
               priority
               alt="Selected image"
               className={styles.image}
+              fill
+              sizes="(width: 100%)"
             />
           </div>
         </div>

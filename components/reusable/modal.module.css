@@ -48,6 +48,9 @@
 
 .imageContainer {
   position: relative;
+  width: 600px;
+  height: 600px;
+  margin: auto;
 }
 
 .navButton {
@@ -60,6 +63,7 @@
   border: none;
   background: none;
   cursor: pointer;
+  z-index: 60;
 }
 
 .navButton.left {
@@ -71,5 +75,5 @@
 }
 
 .image {
-  width: 100%;
+  object-fit: contain;
 }

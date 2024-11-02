@@ -16,14 +16,7 @@
 .modalBox {
   background-color: rgba(0, 0, 0, 0.3);
   padding: 20px;
-}
-
-.modalHeader {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
+  position: relative;
 }
 
 .modalTitle {
@@ -32,6 +25,7 @@
 }
 
 .closeButton {
+  background-color: rgba(174, 183, 201, 0.7);
   border-radius: 9999px;
   padding: 2px;
   font-weight: bold;
@@ -39,7 +33,9 @@
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
-  margin-right: -15px;
+  position: absolute;
+  top: 10px;
+  right: 20px;
 }
 
 .closeButton:hover {
@@ -48,7 +44,7 @@
 
 .imageContainer {
   position: relative;
-  width: 600px;
+  width: 800px;
   height: 600px;
   margin: auto;
 }

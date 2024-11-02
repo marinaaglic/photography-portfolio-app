@@ -24,20 +24,16 @@ export default function Modal({
     <div className={styles.modalOverlay} onClick={(e) => e.stopPropagation()}>
       <div className={styles.modalContainer}>
         <div className={styles.modalBox}>
-          <div className={styles.modalHeader}>
-            <IoClose onClick={onClose} className={styles.closeButton} />
-          </div>
+          <IoClose onClick={onClose} className={styles.closeButton} />
           <div className={styles.imageContainer}>
             <GrFormPrevious
               className={`${styles.navButton} ${styles.left}`}
               onClick={onPrev}
             />
-
             <GrFormNext
               className={`${styles.navButton} ${styles.right}`}
               onClick={onNext}
             />
-
             <Image
               src={imageUrl}
               priority

@@ -21,8 +21,11 @@ export default function Modal({
   selectedIndex,
 }: ModalProps) {
   return (
-    <div className={styles.modalOverlay} onClick={(e) => e.stopPropagation()}>
-      <div className={styles.modalContainer}>
+    <div className={styles.modalOverlay} onClick={onClose}>
+      <div
+        className={styles.modalContainer}
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className={styles.modalBox}>
           <IoClose onClick={onClose} className={styles.closeButton} />
           <div className={styles.imageContainer}>

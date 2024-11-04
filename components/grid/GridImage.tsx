@@ -6,6 +6,7 @@ import Image from "next/image";
 import styles from "./gridImage.module.css";
 import { motion } from "framer-motion";
 import Modal from "../modal/Modal";
+import Loader from "../reusable/Loader";
 
 export default function GridImage() {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
@@ -53,7 +54,7 @@ export default function GridImage() {
   };
 
   if (isLoading) {
-    return <div className={styles.loading}>loading...</div>;
+    return <Loader />;
   }
 
   return (

@@ -40,7 +40,7 @@ export default function Modal({
             <Image
               src={imageUrl}
               priority
-              alt="Selected image"
+              alt={`${selectedIndex}`}
               className={styles.image}
               fill
               sizes="(width: 100%)"

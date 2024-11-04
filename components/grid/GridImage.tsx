@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { getAllImageUrls } from "../../utils/firebaseService";
-import Image, { ImageProps } from "next/image";
+import Image from "next/image";
 import styles from "./gridImage.module.css";
 import { motion } from "framer-motion";
 import Modal from "../reusable/Modal";

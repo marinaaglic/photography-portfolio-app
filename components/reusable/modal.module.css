@@ -40,6 +40,7 @@
   position: absolute;
   top: 10px;
   right: 20px;
+  z-index: 100;
 }
 
 .closeButton:hover {
@@ -100,6 +101,11 @@
     width: 100%;
     padding: 10px;
   }
+
+  .closeButton {
+    top: 10px;
+    right: 10px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -111,5 +117,10 @@
   .navButton {
     font-size: 20px;
     padding: 12px;
+  }
+
+  .closeButton {
+    font-size: 20px;
+    padding: 8px;
   }
 }

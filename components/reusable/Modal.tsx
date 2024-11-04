@@ -44,6 +44,8 @@ export default function Modal({
               className={styles.image}
               fill
               sizes="(width: 100%)"
+              placeholder="blur"
+              blurDataURL={imageUrl}
             />
           </div>
         </div>

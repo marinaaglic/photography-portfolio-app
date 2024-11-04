@@ -40,7 +40,6 @@
   position: absolute;
   top: 10px;
   right: 20px;
-  z-index: 100;
 }
 
 .closeButton:hover {
@@ -122,5 +121,6 @@
   .closeButton {
     font-size: 20px;
     padding: 8px;
+    top: 5px;
   }
 }

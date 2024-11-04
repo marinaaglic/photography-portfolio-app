@@ -2,18 +2,30 @@
 
 import { useState, useEffect } from "react";
 import { getAllImageUrls } from "../../utils/firebaseService";
-import Image from "next/image";
+import Image, { ImageProps } from "next/image";
 import styles from "./gridImage.module.css";
 import { motion } from "framer-motion";
+import Modal from "../reusable/Modal";
 
 export default function GridImage() {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [imageSpans, setImageSpans] = useState<
+    { column: number; row: number }[]
+  >([]);
 
   useEffect(() => {
     const fetchImages = async () => {
       try {
         const urls = await getAllImageUrls("");
         setImageUrls(urls);
+
+        const spans = urls.map(() => ({
+          column: Math.random() < 0.5 ? 2 : 3,
+          row: Math.random() < 0.5 ? 2 : 3,
+        }));
+        setImageSpans(spans);
       } catch (error) {
         console.log("An error occurred: ", error);
       }
@@ -21,9 +33,20 @@ export default function GridImage() {
     fetchImages();
   }, []);
 
-  const getRandomSpan = () => {
-    const spans = [2, 3];
-    return spans[Math.floor(Math.random() * spans.length)];
+  const handleNext = () => {
+    const prevIndex =
+      selectedIndex === imageUrls.length - 1 ? 0 : selectedIndex + 1;
+    setSelectedIndex(prevIndex);
+  };
+
+  const handlePrev = () => {
+    const prevIndex =
+      selectedIndex === 0 ? imageUrls.length - 1 : selectedIndex - 1;
+    setSelectedIndex(prevIndex);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
   return (
@@ -36,8 +59,8 @@ export default function GridImage() {
           transition={{ duration: 0.3, ease: "linear" }}
           viewport={{ once: false, amount: 0.5 }}
           style={{
-            gridColumn: `span ${getRandomSpan()}`,
-            gridRow: `span ${getRandomSpan()}`,
+            gridColumn: `span ${imageSpans[index]?.column || 1}`,
+            gridRow: `span ${imageSpans[index]?.row || 1}`,
           }}
         >
           <Image
@@ -45,12 +68,24 @@ export default function GridImage() {
             alt={`Image ${index + 1}`}
             width={300}
             height={300}
-            loading="lazy"
             className={styles.image}
-            layout="responsive"
+            priority
+            onClick={() => {
+              setShowModal(true);
+              setSelectedIndex(index);
+            }}
           />
         </motion.div>
       ))}
+      {showModal && (
+        <Modal
+          imageUrl={imageUrls[selectedIndex]}
+          onClose={handleCloseModal}
+          onNext={handleNext}
+          onPrev={handlePrev}
+          selectedIndex={selectedIndex}
+        />
+      )}
     </div>
   );
 }

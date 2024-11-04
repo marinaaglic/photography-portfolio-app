@@ -23,7 +23,7 @@
   background-color: rgba(0, 0, 0, 0.3);
   padding: 30px;
   position: relative;
-  width: 100%;
+  width: 80%;
   height: 100%;
   overflow: hidden;
 }
@@ -97,6 +97,8 @@
 
   .modalBox {
     background-color: unset;
+    width: 100%;
+    padding: 10px;
   }
 }
 

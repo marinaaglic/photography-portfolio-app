@@ -5,7 +5,7 @@ import { getAllImageUrls } from "../../utils/firebaseService";
 import Image from "next/image";
 import styles from "./gridImage.module.css";
 import { motion } from "framer-motion";
-import Modal from "../reusable/Modal";
+import Modal from "../modal/Modal";
 
 export default function GridImage() {
   const [imageUrls, setImageUrls] = useState<string[]>([]);

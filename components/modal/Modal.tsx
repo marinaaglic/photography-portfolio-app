@@ -80,11 +80,11 @@ export default function Modal({
               >
                 <Image
                   src={imageUrl}
-                  priority
                   alt={`${selectedIndex}`}
                   className={styles.image}
                   fill
                   sizes="(width: 100%)"
+                  loading="lazy"
                 />
               </motion.div>
             </AnimatePresence>

@@ -5,12 +5,14 @@ import { getAllImageUrls } from "../../utils/firebaseService";
 import Image from "next/image";
 import styles from "./gridImage.module.css";
 import { motion } from "framer-motion";
-import Modal from "../reusable/Modal";
+import Modal from "../modal/Modal";
+import Loader from "../reusable/Loader";
 
 export default function GridImage() {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [imageSpans, setImageSpans] = useState<
     { column: number; row: number }[]
   >([]);
@@ -28,10 +30,20 @@ export default function GridImage() {
         setImageSpans(spans);
       } catch (error) {
         console.log("An error occurred: ", error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchImages();
   }, []);
+
+  useEffect(() => {
+    if (showModal) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+  }, [showModal]);
 
   const handleNext = () => {
     const prevIndex =
@@ -48,6 +60,10 @@ export default function GridImage() {
   const handleCloseModal = () => {
     setShowModal(false);
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className={styles.container}>

@@ -4,6 +4,8 @@ import styles from "./modal.module.css";
 import { IoClose } from "react-icons/io5";
 import { GrFormNext } from "react-icons/gr";
 import { GrFormPrevious } from "react-icons/gr";
+import { motion, AnimatePresence } from "framer-motion";
+import { useSwipeable } from "react-swipeable";
 
 interface ModalProps {
   imageUrl: string;
@@ -20,11 +22,24 @@ export default function Modal({
   onPrev,
   selectedIndex,
 }: ModalProps) {
+  const imageVariants = {
+    initial: { opacity: 0, x: -100 },
+    animate: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: 100 },
+  };
+
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: onNext,
+    onSwipedRight: onPrev,
+    preventScrollOnSwipe: true,
+    trackMouse: false,
+  });
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
       <div
         className={styles.modalContainer}
         onClick={(e) => e.stopPropagation()}
+        {...swipeHandlers}
       >
         <div className={styles.modalBox}>
           <IoClose onClick={onClose} className={styles.closeButton} />
@@ -37,14 +52,26 @@ export default function Modal({
               className={`${styles.navButton} ${styles.right}`}
               onClick={onNext}
             />
-            <Image
-              src={imageUrl}
-              priority
-              alt={`${selectedIndex}`}
-              className={styles.image}
-              fill
-              sizes="(width: 100%)"
-            />
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={imageUrl}
+                className={styles.image}
+                variants={imageVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{ duration: 0.5 }}
+              >
+                <Image
+                  src={imageUrl}
+                  priority
+                  alt={`${selectedIndex}`}
+                  className={styles.image}
+                  fill
+                  sizes="(width: 100%)"
+                />
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>

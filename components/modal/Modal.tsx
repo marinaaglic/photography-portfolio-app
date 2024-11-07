@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import styles from "./modal.module.css";
 import { IoClose } from "react-icons/io5";
@@ -22,18 +22,27 @@ export default function Modal({
   onPrev,
   selectedIndex,
 }: ModalProps) {
+  const [direction, setDirection] = useState(1);
+
   const imageVariants = {
-    initial: { opacity: 0, x: -100 },
+    initial: (direction: number) => ({ opacity: 0, x: direction * 100 }),
     animate: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: 100 },
+    exit: (direction: number) => ({ opacity: 0, x: -direction * 100 }),
   };
 
   const swipeHandlers = useSwipeable({
-    onSwipedLeft: onNext,
-    onSwipedRight: onPrev,
+    onSwipedLeft: () => {
+      setDirection(1);
+      onNext();
+    },
+    onSwipedRight: () => {
+      setDirection(-1);
+      onPrev();
+    },
     preventScrollOnSwipe: true,
     trackMouse: false,
   });
+
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
       <div
@@ -46,13 +55,19 @@ export default function Modal({
           <div className={styles.imageContainer}>
             <GrFormPrevious
               className={`${styles.navButton} ${styles.left}`}
-              onClick={onPrev}
+              onClick={() => {
+                setDirection(-1);
+                onPrev();
+              }}
             />
             <GrFormNext
               className={`${styles.navButton} ${styles.right}`}
-              onClick={onNext}
+              onClick={() => {
+                setDirection(1);
+                onNext();
+              }}
             />
-            <AnimatePresence mode="wait">
+            <AnimatePresence custom={direction} mode="wait">
               <motion.div
                 key={imageUrl}
                 className={styles.image}
@@ -60,15 +75,16 @@ export default function Modal({
                 initial="initial"
                 animate="animate"
                 exit="exit"
+                custom={direction}
                 transition={{ duration: 0.5 }}
               >
                 <Image
                   src={imageUrl}
-                  priority
                   alt={`${selectedIndex}`}
                   className={styles.image}
                   fill
                   sizes="(width: 100%)"
+                  loading="lazy"
                 />
               </motion.div>
             </AnimatePresence>

@@ -76,7 +76,7 @@ export default function Modal({
                 animate="animate"
                 exit="exit"
                 custom={direction}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.3 }}
               >
                 <Image
                   src={imageUrl}

@@ -85,6 +85,7 @@ export default function Modal({
                   fill
                   sizes="(width: 100%)"
                   loading="lazy"
+                  quality={70}
                 />
               </motion.div>
             </AnimatePresence>

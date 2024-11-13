@@ -85,7 +85,7 @@ export default function GridImage() {
             width={300}
             height={300}
             className={styles.image}
-            priority
+            priority={index < 4}
             onClick={() => {
               setShowModal(true);
               setSelectedIndex(index);

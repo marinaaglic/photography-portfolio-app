@@ -76,15 +76,16 @@ export default function Modal({
                 animate="animate"
                 exit="exit"
                 custom={direction}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.3 }}
               >
                 <Image
                   src={imageUrl}
                   alt={`${selectedIndex}`}
                   className={styles.image}
                   fill
-                  sizes="(width: 100%)"
-                  loading="lazy"
+                  sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 33vw"
+                  loading="eager"
+                  quality={60}
                 />
               </motion.div>
             </AnimatePresence>

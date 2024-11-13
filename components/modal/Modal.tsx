@@ -84,7 +84,7 @@ export default function Modal({
                   className={styles.image}
                   fill
                   sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 33vw"
-                  loading="eager"
+                  loading="lazy"
                   quality={60}
                 />
               </motion.div>

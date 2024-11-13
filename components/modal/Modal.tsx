@@ -83,9 +83,9 @@ export default function Modal({
                   alt={`${selectedIndex}`}
                   className={styles.image}
                   fill
-                  sizes="(width: 100%)"
+                  sizes="(max-width: 768px) 80vw, (max-width: 1200px) 50vw, 33vw"
                   loading="lazy"
-                  quality={70}
+                  quality={60}
                 />
               </motion.div>
             </AnimatePresence>

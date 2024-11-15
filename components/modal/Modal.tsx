@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "./modal.module.css";
 import { IoClose } from "react-icons/io5";
@@ -9,6 +9,7 @@ import { useSwipeable } from "react-swipeable";
 
 interface ModalProps {
   imageUrl: string;
+  imageUrls: string[];
   onClose: () => void;
   onNext: () => void;
   onPrev: () => void;
@@ -17,12 +18,30 @@ interface ModalProps {
 
 export default function Modal({
   imageUrl,
+  imageUrls,
   onClose,
   onNext,
   onPrev,
   selectedIndex,
 }: ModalProps) {
   const [direction, setDirection] = useState(1);
+
+  useEffect(() => {
+    const preloadImage = (src: string) => {
+      const img = new window.Image();
+      img.src = src;
+    };
+
+    const nextIndex = (selectedIndex + 1) % imageUrls.length;
+    const prevIndex = (selectedIndex - 1 + imageUrls.length) % imageUrls.length;
+
+    if (imageUrls[nextIndex]) {
+      preloadImage(imageUrls[nextIndex]);
+    }
+    if (imageUrls[prevIndex]) {
+      preloadImage(imageUrls[prevIndex]);
+    }
+  }, [selectedIndex, imageUrls]);
 
   const imageVariants = {
     initial: (direction: number) => ({ opacity: 0, x: direction * 100 }),

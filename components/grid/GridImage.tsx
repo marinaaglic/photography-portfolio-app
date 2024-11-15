@@ -96,6 +96,7 @@ export default function GridImage() {
       {showModal && (
         <Modal
           imageUrl={imageUrls[selectedIndex]}
+          imageUrls={imageUrls}
           onClose={handleCloseModal}
           onNext={handleNext}
           onPrev={handlePrev}

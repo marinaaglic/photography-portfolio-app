@@ -13,7 +13,7 @@ export default function Header() {
     <header className={`${styles.header} ${headerStyle}`}>
       <nav>
         <ul className={styles.ul}>
-          <li className={styles.li}>Photography Portfolio | Sunset Pictures</li>
+          <li className={styles.li}>Photography Portfolio</li>
           <li className={styles.li}>
             <ThemeToggle onToggle={toggleTheme} theme={theme} />
           </li>

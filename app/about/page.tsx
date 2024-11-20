@@ -7,8 +7,12 @@ export default function AboutPage() {
   return (
     <div>
       <Header />
-      <div>
-        <p></p>
+      <div className={styles.wrapper}>
+        <span>{aboutData.title}</span>
+        <span>{aboutData.introduction}</span>
+        <span>{aboutData.body}</span>
+        <span>{aboutData.conclusion}</span>
+        <span>{aboutData.closing}</span>
       </div>
     </div>
   );

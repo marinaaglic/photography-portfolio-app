@@ -23,6 +23,27 @@
   );
 }
 
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+}
+
 .ul {
   list-style: none;
   display: flex;
@@ -36,15 +57,18 @@
 
 @media (max-width: 480px) {
   .header {
-    color: #fff;
-    padding: 1px 0px 1px 0px;
-    text-align: center;
-    font-family: cursive;
     font-size: 15px;
-    border-radius: 10px;
   }
 
   .li {
-    margin: 0px 10px;
+    margin: 0 10px;
+  }
+
+  .nav {
+    padding: 10px;
+  }
+
+  .left {
+    gap: 10px;
   }
 }

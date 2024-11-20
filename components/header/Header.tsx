@@ -12,14 +12,14 @@ export default function Header() {
   const headerStyle = theme === "dark" ? styles.headerDark : styles.headerLight;
   return (
     <header className={`${styles.header} ${headerStyle}`}>
-      <nav>
-        <ul className={styles.ul}>
+      <nav className={styles.nav}>
+        <ul className={styles.left}>
           <li className={styles.li}>Photography Portfolio</li>
           <Link href="/about">About</Link>
-          <li className={styles.li}>
-            <ThemeToggle onToggle={toggleTheme} theme={theme} />
-          </li>
         </ul>
+        <div className={styles.right}>
+          <ThemeToggle onToggle={toggleTheme} theme={theme} />
+        </div>
       </nav>
     </header>
   );

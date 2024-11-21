@@ -58,6 +58,7 @@
 
 .link {
   color: goldenrod;
+  font-size: 18px;
 }
 
 @media (max-width: 480px) {

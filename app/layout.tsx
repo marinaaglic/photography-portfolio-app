@@ -1,19 +1,25 @@
-"use client";
-
+import { ThemeProvider } from "../app/providers/ThemeProvider";
+import Header from "../components/header/Header";
 import "./globals.css";
-import { ThemeProvider, useTheme } from "../app/providers/ThemeProvider";
+
+export const metadata = {
+  title: "Photography Portfolio",
+  description: "A showcase of photography work",
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
-  const { theme } = useTheme();
+}) {
   return (
-    <ThemeProvider>
-      <html lang="en">
-        <body className={theme}>{children}</body>
-      </html>
-    </ThemeProvider>
+    <html lang="en">
+      <body>
+        <ThemeProvider>
+          <Header />
+          <main>{children}</main>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }

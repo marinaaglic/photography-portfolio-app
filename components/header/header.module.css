@@ -2,7 +2,6 @@
   color: #fff;
   padding: 1px 0px 1px 0px;
   text-align: center;
-  font-family: cursive;
   font-size: 20px;
   border-radius: 10px;
 }
@@ -54,6 +53,11 @@
 
 .li {
   margin: 0px 15px;
+  font-family: cursive;
+}
+
+.link {
+  color: goldenrod;
 }
 
 @media (max-width: 480px) {

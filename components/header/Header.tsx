@@ -15,7 +15,9 @@ export default function Header() {
       <nav className={styles.nav}>
         <ul className={styles.left}>
           <li className={styles.li}>Photography Portfolio</li>
-          <Link href="/about">About</Link>
+          <Link href="/about" className={styles.link}>
+            About
+          </Link>
         </ul>
         <div className={styles.right}>
           <ThemeToggle onToggle={toggleTheme} theme={theme} />

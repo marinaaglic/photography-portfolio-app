@@ -4,12 +4,7 @@
   align-items: center;
   gap: 20px;
   padding: 30px;
-  border-image: linear-gradient(
-      to right,
-      rgba(153, 48, 18, 1),
-      rgba(127, 106, 35, 1) 100%
-    )
-    1;
+  border-image: var(--border-gradient) 1;
   border-width: 4px;
   border-style: solid;
   margin: auto;

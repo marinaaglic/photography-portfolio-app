@@ -4,12 +4,11 @@
   :root {
     --text: black;
     --background: white;
-    --border-gradient-light: linear-gradient(
+    --border-gradient: linear-gradient(
       to right,
       rgba(253, 79, 29, 1),
       rgba(252, 212, 69, 1) 100%
     );
-    --border-gradient: var(--border-gradient-light);
     --link-color: gold;
   }
 }
@@ -18,12 +17,11 @@
   :root {
     --text: white;
     --background: #121212;
-    --border-gradient-dark: linear-gradient(
+    --border-gradient: linear-gradient(
       to right,
       rgba(153, 48, 18, 1),
       rgba(127, 106, 35, 1) 100%
     );
-    --border-gradient: var(--border-gradient-dark);
     --link-color: goldenrod;
   }
 }
@@ -31,14 +29,22 @@
 :root {
   --text: black;
   --background: white;
-  --border-gradient: var(--border-gradient-light);
+  --border-gradient: linear-gradient(
+    to right,
+    rgba(253, 79, 29, 1),
+    rgba(252, 212, 69, 1) 100%
+  );
   --link-color: gold;
 }
 
 body.dark {
   --text: white;
   --background: #121212;
-  --border-gradient: var(--border-gradient-dark);
+  --border-gradient: linear-gradient(
+    to right,
+    rgba(153, 48, 18, 1),
+    rgba(127, 106, 35, 1) 100%
+  );
   --link-color: goldenrod;
 }
 

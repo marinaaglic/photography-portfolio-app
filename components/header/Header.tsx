@@ -14,10 +14,16 @@ export default function Header() {
     <header className={`${styles.header} ${headerStyle}`}>
       <nav className={styles.nav}>
         <ul className={styles.left}>
-          <li className={styles.li}>Photography Portfolio</li>
-          <Link href="/about" className={styles.link}>
-            About
-          </Link>
+          <li className={styles.li}>
+            <Link href="/" className={styles.homeLink}>
+              Photography Portfolio
+            </Link>
+          </li>
+          <li>
+            <Link href="/about" className={styles.aboutLink}>
+              About
+            </Link>
+          </li>
         </ul>
         <div className={styles.right}>
           <ThemeToggle onToggle={toggleTheme} theme={theme} />

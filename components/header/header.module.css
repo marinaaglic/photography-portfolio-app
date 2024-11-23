@@ -53,12 +53,17 @@
 
 .li {
   margin: 0px 15px;
-  font-family: cursive;
 }
 
-.link {
+.aboutLink {
   color: var(--link-color);
   font-size: 18px;
+}
+
+.homeLink {
+  text-decoration: none;
+  color: white;
+  font-family: cursive;
 }
 
 @media (max-width: 480px) {

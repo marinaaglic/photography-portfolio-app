@@ -2,7 +2,7 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --text: black;
+    --text: #121212;
     --background: white;
     --border-gradient: linear-gradient(
       to right,
@@ -27,7 +27,7 @@
 }
 
 :root {
-  --text: black;
+  --text: #121212;
   --background: white;
   --border-gradient: linear-gradient(
     to right,

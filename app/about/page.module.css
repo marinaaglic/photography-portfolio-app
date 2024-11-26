@@ -10,6 +10,7 @@
   width: 50%;
   margin-top: 30px;
   z-index: 1;
+  text-align: center;
 }
 
 .wrapper::before {
@@ -22,4 +23,14 @@
   mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   z-index: -1;
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    font-size: 13px;
+    padding: 15px;
+    gap: 10px;
+    width: 65%;
+    text-align: center;
+  }
 }

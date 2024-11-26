@@ -1,11 +1,57 @@
-body {
-  background-color: white;
-  color: black;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --text: #121212;
+    --background: white;
+    --border-gradient: linear-gradient(
+      to right,
+      rgba(253, 79, 29, 1),
+      rgba(252, 212, 69, 1) 100%
+    );
+    --link-color: gold;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: white;
+    --background: #121212;
+    --border-gradient: linear-gradient(
+      to right,
+      rgba(153, 48, 18, 1),
+      rgba(127, 106, 35, 1) 100%
+    );
+    --link-color: goldenrod;
+  }
+}
+
+:root {
+  --text: #121212;
+  --background: white;
+  --border-gradient: linear-gradient(
+    to right,
+    rgba(253, 79, 29, 1),
+    rgba(252, 212, 69, 1) 100%
+  );
+  --link-color: gold;
 }
 
 body.dark {
-  background-color: #121212;
-  color: white;
+  --text: white;
+  --background: #121212;
+  --border-gradient: linear-gradient(
+    to right,
+    rgba(153, 48, 18, 1),
+    rgba(127, 106, 35, 1) 100%
+  );
+  --link-color: goldenrod;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: var(--text);
+  background-color: var(--background);
 }
 
 .no-scroll {

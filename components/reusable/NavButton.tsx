@@ -1,6 +1,6 @@
 import React from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import styles from "./NavButton.module.css";
+import styles from "./navButton.module.css";
 
 interface NavButtonProps {
   direction: "left" | "right";

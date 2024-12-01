@@ -42,6 +42,25 @@ export default function Modal({
     }
   }, [selectedIndex, imageUrls]);
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowRight") {
+        setDirection(1);
+        onNext();
+      } else if (event.key === "ArrowLeft") {
+        setDirection(-1);
+        onPrev();
+      } else if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onNext, onPrev, onClose]);
+
   const imageVariants = {
     initial: (direction: number) => ({ opacity: 0, x: direction * 100 }),
     animate: { opacity: 1, x: 0 },

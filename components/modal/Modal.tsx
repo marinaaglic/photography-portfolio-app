@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "./modal.module.css";
 import { IoClose } from "react-icons/io5";
-import { GrFormNext } from "react-icons/gr";
-import { GrFormPrevious } from "react-icons/gr";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSwipeable } from "react-swipeable";
+import NavButton from "../reusable/NavButton";
 
 interface ModalProps {
   imageUrl: string;
@@ -72,15 +71,15 @@ export default function Modal({
         <div className={styles.modalBox}>
           <IoClose onClick={onClose} className={styles.closeButton} />
           <div className={styles.imageContainer}>
-            <GrFormPrevious
-              className={`${styles.navButton} ${styles.left}`}
+            <NavButton
+              direction="left"
               onClick={() => {
                 setDirection(-1);
                 onPrev();
               }}
             />
-            <GrFormNext
-              className={`${styles.navButton} ${styles.right}`}
+            <NavButton
+              direction="right"
               onClick={() => {
                 setDirection(1);
                 onNext();

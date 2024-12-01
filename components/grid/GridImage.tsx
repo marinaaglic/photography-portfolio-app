@@ -19,15 +19,23 @@ export default function GridImage() {
 
   useEffect(() => {
     const fetchImages = async () => {
+      setIsLoading(true);
       try {
-        const urls = await getAllImageUrls("");
-        setImageUrls(urls);
+        let storedImages = sessionStorage.getItem("imageUrls");
 
-        const spans = urls.map(() => ({
-          column: Math.random() < 0.5 ? 2 : 3,
-          row: Math.random() < 0.5 ? 2 : 3,
-        }));
-        setImageSpans(spans);
+        if (storedImages) {
+          const urls = JSON.parse(storedImages);
+          setImageUrls(urls);
+          const spans = urls.map(() => ({
+            column: Math.random() < 0.5 ? 2 : 3,
+            row: Math.random() < 0.5 ? 2 : 3,
+          }));
+          setImageSpans(spans);
+        } else {
+          const urls = await getAllImageUrls("");
+          setImageUrls(urls);
+          sessionStorage.setItem("imageUrls", JSON.stringify(urls));
+        }
       } catch (error) {
         console.log("An error occurred: ", error);
       } finally {
@@ -85,7 +93,7 @@ export default function GridImage() {
             width={300}
             height={300}
             className={styles.image}
-            priority={index < 4}
+            priority={index < 2}
             onClick={() => {
               setShowModal(true);
               setSelectedIndex(index);

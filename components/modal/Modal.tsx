@@ -5,6 +5,7 @@ import { IoClose } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSwipeable } from "react-swipeable";
 import NavButton from "../reusable/NavButton";
+import { imageVariants } from "../../utils/animationVariants";
 
 interface ModalProps {
   imageUrl: string;
@@ -60,12 +61,6 @@ export default function Modal({
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [onNext, onPrev, onClose]);
-
-  const imageVariants = {
-    initial: (direction: number) => ({ opacity: 0, x: direction * 100 }),
-    animate: { opacity: 1, x: 0 },
-    exit: (direction: number) => ({ opacity: 0, x: -direction * 100 }),
-  };
 
   const swipeHandlers = useSwipeable({
     onSwipedLeft: () => {

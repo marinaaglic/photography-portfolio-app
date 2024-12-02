@@ -5,7 +5,7 @@ import { IoClose } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSwipeable } from "react-swipeable";
 import NavButton from "../reusable/NavButton";
-import { imageVariants } from "../../utils/animationVariants";
+import { imageVariants } from "../../utils/imageVariants";
 
 interface ModalProps {
   imageUrl: string;

@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useSwipeable } from "react-swipeable";
 import NavButton from "../reusable/NavButton";
 import { imageVariants } from "../../utils/imageVariants";
+import { useSwipeNavigation } from "../../hook/useSwipeNavigation";
 
 interface ModalProps {
   imageUrl: string;
@@ -25,6 +26,7 @@ export default function Modal({
   selectedIndex,
 }: ModalProps) {
   const [direction, setDirection] = useState(1);
+  const swipeHandlers = useSwipeNavigation({ onNext, onPrev, setDirection });
 
   useEffect(() => {
     const preloadImage = (src: string) => {
@@ -61,19 +63,6 @@ export default function Modal({
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [onNext, onPrev, onClose]);
-
-  const swipeHandlers = useSwipeable({
-    onSwipedLeft: () => {
-      setDirection(1);
-      onNext();
-    },
-    onSwipedRight: () => {
-      setDirection(-1);
-      onPrev();
-    },
-    preventScrollOnSwipe: true,
-    trackMouse: false,
-  });
 
   return (
     <div className={styles.modalOverlay} onClick={onClose}>

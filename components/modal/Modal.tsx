@@ -3,10 +3,10 @@ import Image from "next/image";
 import styles from "./modal.module.css";
 import { IoClose } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
-import { useSwipeable } from "react-swipeable";
 import NavButton from "../reusable/NavButton";
 import { imageVariants } from "../../utils/imageVariants";
-import { useSwipeNavigation } from "../../hook/useSwipeNavigation";
+import { useSwipeNavigation } from "../../hooks/useSwipeNavigation";
+import { handleKeyboardNavigation } from "../../utils/keyboardNavigation";
 
 interface ModalProps {
   imageUrl: string;
@@ -46,23 +46,8 @@ export default function Modal({
   }, [selectedIndex, imageUrls]);
 
   useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "ArrowRight") {
-        setDirection(1);
-        onNext();
-      } else if (event.key === "ArrowLeft") {
-        setDirection(-1);
-        onPrev();
-      } else if (event.key === "Escape") {
-        onClose();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [onNext, onPrev, onClose]);
+    return handleKeyboardNavigation({ onNext, onPrev, onClose, setDirection });
+  }, [onNext, onPrev, onClose, setDirection]);
 
   return (
     <div className={styles.modalOverlay} onClick={onClose}>

@@ -13,6 +13,7 @@ export default function GridImage() {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
   const [imageSpans, setImageSpans] = useState<
     { column: number; row: number }[]
   >([]);
@@ -37,6 +38,7 @@ export default function GridImage() {
           sessionStorage.setItem("imageUrls", JSON.stringify(urls));
         }
       } catch (error) {
+        setError("Failed to fetch images. Please try again later.");
         console.log("An error occurred: ", error);
       } finally {
         setIsLoading(false);

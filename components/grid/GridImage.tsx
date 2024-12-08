@@ -7,6 +7,7 @@ import styles from "./gridImage.module.css";
 import { motion } from "framer-motion";
 import Modal from "../modal/Modal";
 import Loader from "../reusable/Loader";
+import { useBodyClass } from "../../hooks/useBodyClass";
 
 export default function GridImage() {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
@@ -47,13 +48,7 @@ export default function GridImage() {
     fetchImages();
   }, []);
 
-  useEffect(() => {
-    if (showModal) {
-      document.body.classList.add("no-scroll");
-    } else {
-      document.body.classList.remove("no-scroll");
-    }
-  }, [showModal]);
+  useBodyClass("no-scroll", showModal);
 
   const handleNext = () => {
     const prevIndex =

@@ -67,7 +67,12 @@ export default function GridImage() {
   };
 
   if (isLoading) {
-    return <Loader />;
+    return (
+      <div>
+        <Loader />
+        {error && <div className={styles.error}>{error}</div>}
+      </div>
+    );
   }
 
   return (

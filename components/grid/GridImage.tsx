@@ -28,11 +28,6 @@ export default function GridImage() {
         if (storedImages) {
           const urls = JSON.parse(storedImages);
           setImageUrls(urls);
-          const spans = urls.map(() => ({
-            column: Math.random() < 0.5 ? 2 : 3,
-            row: Math.random() < 0.5 ? 2 : 3,
-          }));
-          setImageSpans(spans);
         } else {
           const urls = await getAllImageUrls("");
           setImageUrls(urls);
@@ -47,6 +42,16 @@ export default function GridImage() {
     };
     fetchImages();
   }, []);
+
+  useEffect(() => {
+    if (imageUrls.length > 0) {
+      const spans = imageUrls.map(() => ({
+        column: Math.random() < 0.5 ? 2 : 3,
+        row: Math.random() < 0.5 ? 2 : 3,
+      }));
+      setImageSpans(spans);
+    }
+  }, [imageUrls]);
 
   useBodyClass("no-scroll", showModal);
 

@@ -6,6 +6,10 @@
   margin: 20px;
 }
 
+.grid-container.hidden {
+  display: none;
+}
+
 .loading {
   text-align: center;
 }

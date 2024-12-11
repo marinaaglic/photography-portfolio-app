@@ -82,7 +82,7 @@ export default function GridImage() {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${isLoading ? "hidden" : ""}`}>
       {imageUrls.map((url, index) => (
         <ImageItem
           key={index}

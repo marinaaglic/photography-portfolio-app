@@ -7,12 +7,14 @@ import styles from "./gridImage.module.css";
 import { motion } from "framer-motion";
 import Modal from "../modal/Modal";
 import Loader from "../reusable/Loader";
+import { useBodyClass } from "../../hooks/useBodyClass";
 
 export default function GridImage() {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
   const [imageSpans, setImageSpans] = useState<
     { column: number; row: number }[]
   >([]);
@@ -26,17 +28,13 @@ export default function GridImage() {
         if (storedImages) {
           const urls = JSON.parse(storedImages);
           setImageUrls(urls);
-          const spans = urls.map(() => ({
-            column: Math.random() < 0.5 ? 2 : 3,
-            row: Math.random() < 0.5 ? 2 : 3,
-          }));
-          setImageSpans(spans);
         } else {
           const urls = await getAllImageUrls("");
           setImageUrls(urls);
           sessionStorage.setItem("imageUrls", JSON.stringify(urls));
         }
       } catch (error) {
+        setError("Failed to fetch images. Please try again later.");
         console.log("An error occurred: ", error);
       } finally {
         setIsLoading(false);
@@ -46,12 +44,16 @@ export default function GridImage() {
   }, []);
 
   useEffect(() => {
-    if (showModal) {
-      document.body.classList.add("no-scroll");
-    } else {
-      document.body.classList.remove("no-scroll");
+    if (imageUrls.length > 0) {
+      const spans = imageUrls.map(() => ({
+        column: Math.random() < 0.5 ? 2 : 3,
+        row: Math.random() < 0.5 ? 2 : 3,
+      }));
+      setImageSpans(spans);
     }
-  }, [showModal]);
+  }, [imageUrls]);
+
+  useBodyClass("no-scroll", showModal);
 
   const handleNext = () => {
     const prevIndex =
@@ -70,7 +72,12 @@ export default function GridImage() {
   };
 
   if (isLoading) {
-    return <Loader />;
+    return (
+      <div>
+        <Loader />
+        {error && <div className={styles.error}>{error}</div>}
+      </div>
+    );
   }
 
   return (

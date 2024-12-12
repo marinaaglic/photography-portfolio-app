@@ -50,7 +50,7 @@ export default function Modal({
   }, [onNext, onPrev, onClose, setDirection]);
 
   return (
-    <div className={styles.modalOverlay} onClick={onClose}>
+    <div className={styles.modalOverlay} onClick={onClose} role="dialog">
       <div
         className={styles.modalContainer}
         onClick={(e) => e.stopPropagation()}

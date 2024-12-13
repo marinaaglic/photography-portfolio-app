@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import Modal from "../modal/Modal";
 import Loader from "../reusable/Loader";
 import { useBodyClass } from "../../hooks/useBodyClass";
+import ImageItem from "./ImageItem";
 
 export default function GridImage() {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
@@ -81,32 +82,18 @@ export default function GridImage() {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${isLoading ? "hidden" : ""}`}>
       {imageUrls.map((url, index) => (
-        <motion.div
+        <ImageItem
           key={index}
-          initial={{ opacity: 0.3 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.3, ease: "linear" }}
-          viewport={{ once: false, amount: 0.5 }}
-          style={{
-            gridColumn: `span ${imageSpans[index]?.column || 1}`,
-            gridRow: `span ${imageSpans[index]?.row || 1}`,
+          url={url}
+          index={index}
+          onClick={() => {
+            setShowModal(true);
+            setSelectedIndex(index);
           }}
-        >
-          <Image
-            src={url}
-            alt={`Image ${index + 1}`}
-            width={300}
-            height={300}
-            className={styles.image}
-            priority={index < 2}
-            onClick={() => {
-              setShowModal(true);
-              setSelectedIndex(index);
-            }}
-          />
-        </motion.div>
+          imageSpan={imageSpans[index]}
+        />
       ))}
       {showModal && (
         <Modal

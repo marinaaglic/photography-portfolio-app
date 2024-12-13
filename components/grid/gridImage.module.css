@@ -6,16 +6,8 @@
   margin: 20px;
 }
 
-.image {
-  width: 100%;
-  height: auto;
-  border-radius: 3px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  transition: transform 0.5s ease;
-}
-
-.image:hover {
-  transform: scale(1.05);
+.grid-container.hidden {
+  display: none;
 }
 
 .loading {
